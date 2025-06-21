@@ -1,8 +1,10 @@
 using UnityEngine;
 
-public class enemy : MonoBehaviour
+
+
+public class enemytower : MonoBehaviour
 {
-    public float moveSpeed = 3f;
+     public float moveSpeed = 3f;
     public float damage = 25f;
     public GameObject destroyEffect;
 
@@ -70,3 +72,4 @@ public class enemy : MonoBehaviour
         targetTower = closestTower;
     }
 }
+
