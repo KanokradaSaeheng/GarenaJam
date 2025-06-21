@@ -1,8 +1,8 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
-public class ProfileManager : MonoBehaviour
+public class Healthbar : MonoBehaviour
 {
     [Header("Overlay UI")]
     public GameObject profileOverlay;
@@ -13,7 +13,6 @@ public class ProfileManager : MonoBehaviour
     public Button confirmButton;
 
     [Header("Top-left profile")]
-    public GameObject topLeftProfilePanel;  // NEW: The whole panel to show/hide
     public Image profileImage;
     public TMP_Text profileName;
 
@@ -24,26 +23,15 @@ public class ProfileManager : MonoBehaviour
     [Header("Player")]
     public GameObject playerCube;
 
-    [Header("Dark background")]
-    public Image dimBackground;  // NEW: Assign a UI Image with black semi-transparent background
-
     private int currentCharacterIndex = 0;
 
     void Start()
     {
-        ShowProfileMaker(true);
-
+        profileOverlay.SetActive(true);
         UpdateCharacterImage();
         leftButton.onClick.AddListener(PreviousCharacter);
         rightButton.onClick.AddListener(NextCharacter);
         confirmButton.onClick.AddListener(ConfirmProfile);
-    }
-
-    void ShowProfileMaker(bool show)
-    {
-        profileOverlay.SetActive(show);
-        dimBackground.gameObject.SetActive(show);  // Show or hide dim background
-        topLeftProfilePanel.SetActive(!show);      // Hide profile when overlay is up
     }
 
     void UpdateCharacterImage()
@@ -77,10 +65,10 @@ public class ProfileManager : MonoBehaviour
         Destroy(playerCube);
         Instantiate(characterPrefabs[currentCharacterIndex], spawnPos, spawnRot);
 
-        // Hide overlay + show profile
-        ShowProfileMaker(false);
+        // Hide overlay
+        profileOverlay.SetActive(false);
 
-        // Optional: resume game if paused
+        // Optional: resume game if paused, or reset timescale
         // Time.timeScale = 1;
     }
 }
