@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/DaFolder/Scene/TeamSplashScene.unity
+    guid: 393264395a937104eb8cdcb67e59614f
+  - enabled: 1
     path: Assets/DaFolder/Scene/Title_Scene.unity
     guid: 6bcf6976cf35dca44a307f8cb91b7be1
   - enabled: 1
