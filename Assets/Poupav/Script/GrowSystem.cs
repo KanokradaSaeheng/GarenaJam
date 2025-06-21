@@ -4,20 +4,21 @@ using System.Collections.Generic;
 
 public class GrowSystem : MonoBehaviour
 {
-    public List<GameObject> growstages;
+    public List<GameObject> growStages;
     public float timeBetweenGrows;
     public int currentStage = 0;
     private GameObject currentInstance;
-    public bool Isfullygrown { get; private set; } = false;
 
+    public bool IsFullyGrown { get; private set; } = false;
+    public bool HasSpawned { get; set; } = false;
 
     private Coroutine growRoutine;
 
     private void Start()
     {
-        if (growstages.Count == 0)
+        if (growStages.Count == 0)
         {
-            Debug.LogWarning("No growstages assigned");
+            Debug.LogWarning("No grow stages assigned!");
             return;
         }
 
@@ -34,32 +35,33 @@ public class GrowSystem : MonoBehaviour
 
     IEnumerator GrowRoutine()
     {
-        Isfullygrown = false;
+        IsFullyGrown = false;
+        HasSpawned = false;
         currentStage = 0;
 
-        while (currentStage < growstages.Count)
+        while (currentStage < growStages.Count)
         {
             if (currentInstance != null)
                 Destroy(currentInstance);
 
-            currentInstance = Instantiate(growstages[currentStage], transform.position, Quaternion.identity, transform);
+            currentInstance = Instantiate(growStages[currentStage], transform.position, Quaternion.identity, transform);
             yield return new WaitForSeconds(timeBetweenGrows);
             currentStage++;
         }
 
-        Debug.Log("Fully Grown");
-        Isfullygrown = true;
+        IsFullyGrown = true;
+        Debug.Log("Fully Grown!");
     }
 
-    // ✅ Reset method to be called from outside
     public void ResetGrowth()
     {
         if (currentInstance != null)
             Destroy(currentInstance);
 
-        Isfullygrown = false;
+        IsFullyGrown = false;
+        HasSpawned = false;
         currentStage = 0;
 
-        StartGrowing(); // Restart growth
+        StartGrowing();
     }
 }
