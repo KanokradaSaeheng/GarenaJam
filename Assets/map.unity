@@ -653,6 +653,7 @@ GameObject:
   - component: {fileID: 42475884}
   - component: {fileID: 42475886}
   - component: {fileID: 42475885}
+  - component: {fileID: 42475887}
   m_Layer: 0
   m_Name: AlliesSystem
   m_TagString: Untagged
@@ -688,10 +689,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allyStages:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2630425031254273193, guid: ff4399c5c516b6145b031f40e03b2334, type: 3}
+  - {fileID: 9021533571043771964, guid: 3de640461f794dc44a223f1cfedb8abf, type: 3}
+  - {fileID: 8331122410249767392, guid: 1263c5c5f1c53d941996ba932a56be28, type: 3}
+  - {fileID: 1941980279283757603, guid: 1ff530657f12e2944895de229213090e, type: 3}
   timeBetweenStages: 2
   currentStage: 0
 --- !u!114 &42475886
@@ -706,12 +707,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed7a87dd6f178244a5fc49cc1c312b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growSystem: {fileID: 0}
-  allyPrefab: {fileID: 0}
-  spawnCenter: {fileID: 0}
+  growSystem: {fileID: 42475885}
+  allyPrefab: {fileID: 2080278272668668581, guid: e6759cd3e030e634caa84e53e0393a10, type: 3}
+  spawnCenter: {fileID: 42475883}
   spawnRange: 5
   maxAllies: 10
   waitSeconds: 3
+--- !u!114 &42475887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42475883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c56be79054086545903926d1d5da875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTarget: {fileID: 1655079864}
+  moveSpeed: 5
+  detectionRadius: 5
+  health: 3
 --- !u!1001 &44241932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5275,6 +5292,7 @@ GameObject:
   - component: {fileID: 492637586}
   - component: {fileID: 492637585}
   - component: {fileID: 492637584}
+  - component: {fileID: 492637587}
   m_Layer: 0
   m_Name: AlliesSystem (3)
   m_TagString: Untagged
@@ -5295,10 +5313,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allyStages:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2630425031254273193, guid: ff4399c5c516b6145b031f40e03b2334, type: 3}
+  - {fileID: 9021533571043771964, guid: 3de640461f794dc44a223f1cfedb8abf, type: 3}
+  - {fileID: 8331122410249767392, guid: 1263c5c5f1c53d941996ba932a56be28, type: 3}
+  - {fileID: 1941980279283757603, guid: 1ff530657f12e2944895de229213090e, type: 3}
   timeBetweenStages: 2
   currentStage: 0
 --- !u!114 &492637585
@@ -5314,7 +5332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growSystem: {fileID: 0}
-  allyPrefab: {fileID: 0}
+  allyPrefab: {fileID: 2080278272668668581, guid: e6759cd3e030e634caa84e53e0393a10, type: 3}
   spawnCenter: {fileID: 0}
   spawnRange: 5
   maxAllies: 10
@@ -5334,6 +5352,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &492637587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492637583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c56be79054086545903926d1d5da875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTarget: {fileID: 1655079864}
+  moveSpeed: 5
+  detectionRadius: 5
+  health: 3
 --- !u!1001 &514944462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7179,6 +7213,7 @@ GameObject:
   - component: {fileID: 760095445}
   - component: {fileID: 760095444}
   - component: {fileID: 760095443}
+  - component: {fileID: 760095446}
   m_Layer: 0
   m_Name: AlliesSystem (1)
   m_TagString: Untagged
@@ -7199,10 +7234,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allyStages:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2630425031254273193, guid: ff4399c5c516b6145b031f40e03b2334, type: 3}
+  - {fileID: 9021533571043771964, guid: 3de640461f794dc44a223f1cfedb8abf, type: 3}
+  - {fileID: 8331122410249767392, guid: 1263c5c5f1c53d941996ba932a56be28, type: 3}
+  - {fileID: 1941980279283757603, guid: 1ff530657f12e2944895de229213090e, type: 3}
   timeBetweenStages: 2
   currentStage: 0
 --- !u!114 &760095444
@@ -7218,7 +7253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growSystem: {fileID: 0}
-  allyPrefab: {fileID: 0}
+  allyPrefab: {fileID: 2080278272668668581, guid: e6759cd3e030e634caa84e53e0393a10, type: 3}
   spawnCenter: {fileID: 0}
   spawnRange: 5
   maxAllies: 10
@@ -7238,6 +7273,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &760095446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760095442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c56be79054086545903926d1d5da875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTarget: {fileID: 1655079864}
+  moveSpeed: 5
+  detectionRadius: 5
+  health: 3
 --- !u!1001 &773746680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13867,6 +13918,7 @@ GameObject:
   - component: {fileID: 1483377545}
   - component: {fileID: 1483377544}
   - component: {fileID: 1483377543}
+  - component: {fileID: 1483377546}
   m_Layer: 0
   m_Name: AlliesSystem (2)
   m_TagString: Untagged
@@ -13887,10 +13939,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allyStages:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2630425031254273193, guid: ff4399c5c516b6145b031f40e03b2334, type: 3}
+  - {fileID: 9021533571043771964, guid: 3de640461f794dc44a223f1cfedb8abf, type: 3}
+  - {fileID: 8331122410249767392, guid: 1263c5c5f1c53d941996ba932a56be28, type: 3}
+  - {fileID: 1941980279283757603, guid: 1ff530657f12e2944895de229213090e, type: 3}
   timeBetweenStages: 2
   currentStage: 0
 --- !u!114 &1483377544
@@ -13906,7 +13958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growSystem: {fileID: 0}
-  allyPrefab: {fileID: 0}
+  allyPrefab: {fileID: 2080278272668668581, guid: e6759cd3e030e634caa84e53e0393a10, type: 3}
   spawnCenter: {fileID: 0}
   spawnRange: 5
   maxAllies: 10
@@ -13926,6 +13978,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1483377546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483377542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c56be79054086545903926d1d5da875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTarget: {fileID: 1655079864}
+  moveSpeed: 5
+  detectionRadius: 5
+  health: 3
 --- !u!1001 &1487328242
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15531,6 +15599,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!4 &1655079864 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5093781657997726357, guid: b1f44a5ef3dbb2b488d73afe4391f788, type: 3}
+  m_PrefabInstance: {fileID: 1655079856}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1655333853
 PrefabInstance:
   m_ObjectHideFlags: 0
