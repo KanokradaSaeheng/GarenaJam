@@ -29,13 +29,13 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            if (growSystem != null && growSystem.Isfullygrown && enemiesCount < maxEnemies)
+            if (growSystem != null && growSystem.IsFullyGrown && !growSystem.HasSpawned && enemiesCount < maxEnemies)
             {
                 Vector3 pos = GetRandomSpawnPosition();
                 Instantiate(spawnPrefab, pos, Quaternion.identity);
                 enemiesCount++;
 
-                // Reset crop
+                growSystem.HasSpawned = true;
                 growSystem.ResetGrowth();
             }
 
@@ -45,8 +45,8 @@ public class EnemySpawner : MonoBehaviour
 
     private Vector3 GetRandomSpawnPosition()
     {
-        float offsetX = UnityEngine.Random.Range(-spawnRange, spawnRange);
-        float offsetZ = UnityEngine.Random.Range(-spawnRange, spawnRange);
+        float offsetX = Random.Range(-spawnRange, spawnRange);
+        float offsetZ = Random.Range(-spawnRange, spawnRange);
         return spawnCenter.transform.position + new Vector3(offsetX, 0f, offsetZ);
     }
 }
