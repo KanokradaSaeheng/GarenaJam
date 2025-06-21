@@ -1,45 +1,74 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour
 {
-    public Transform cam; // Assign Main Camera here
-    public Slider healthSlider; // Drag your UI slider here
-    public float maxHealth = 100f;
-    private float currentHealth;
+    [Header("Overlay UI")]
+    public GameObject profileOverlay;
+    public TMP_InputField nameInput;
+    public Image characterImage;
+    public Button leftButton;
+    public Button rightButton;
+    public Button confirmButton;
+
+    [Header("Top-left profile")]
+    public Image profileImage;
+    public TMP_Text profileName;
+
+    [Header("Character options")]
+    public Sprite[] characterSprites;
+    public GameObject[] characterPrefabs;
+
+    [Header("Player")]
+    public GameObject playerCube;
+
+    private int currentCharacterIndex = 0;
 
     void Start()
     {
-        currentHealth = maxHealth;
-        UpdateHealthUI();
+        profileOverlay.SetActive(true);
+        UpdateCharacterImage();
+        leftButton.onClick.AddListener(PreviousCharacter);
+        rightButton.onClick.AddListener(NextCharacter);
+        confirmButton.onClick.AddListener(ConfirmProfile);
     }
 
-    void LateUpdate()
+    void UpdateCharacterImage()
     {
-        // Make the health bar face the camera
-        if (cam != null)
-            transform.LookAt(transform.position + cam.forward);
+        characterImage.sprite = characterSprites[currentCharacterIndex];
     }
 
-    void Update()
+    void PreviousCharacter()
     {
-        // TEST: Tap screen to reduce HP
-        if (Input.GetMouseButtonDown(0))
-        {
-            TakeDamage(10f);
-        }
+        currentCharacterIndex = (currentCharacterIndex - 1 + characterSprites.Length) % characterSprites.Length;
+        UpdateCharacterImage();
     }
 
-    public void TakeDamage(float damage)
+    void NextCharacter()
     {
-        currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        UpdateHealthUI();
+        currentCharacterIndex = (currentCharacterIndex + 1) % characterSprites.Length;
+        UpdateCharacterImage();
     }
 
-    void UpdateHealthUI()
+    void ConfirmProfile()
     {
-        if (healthSlider != null)
-            healthSlider.value = currentHealth / maxHealth;
+        string playerName = nameInput.text;
+
+        // Update top-left profile UI
+        profileName.text = playerName;
+        profileImage.sprite = characterSprites[currentCharacterIndex];
+
+        // Replace player cube with chosen character prefab
+        Vector3 spawnPos = playerCube.transform.position;
+        Quaternion spawnRot = playerCube.transform.rotation;
+        Destroy(playerCube);
+        Instantiate(characterPrefabs[currentCharacterIndex], spawnPos, spawnRot);
+
+        // Hide overlay
+        profileOverlay.SetActive(false);
+
+        // Optional: resume game if paused, or reset timescale
+        // Time.timeScale = 1;
     }
 }

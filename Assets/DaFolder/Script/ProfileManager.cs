@@ -5,96 +5,70 @@ using TMPro;
 public class ProfileManager : MonoBehaviour
 {
     [Header("Overlay UI")]
-    public GameObject profileMakerPanel;          // The overlay panel with name input + character selection
-    public TMP_InputField nameInput;              // TMP Input Field for player name
-    public Image characterPreviewImage;           // Preview image to show current sprite selection
-    public Button leftButton;                     // Button to go to previous sprite
-    public Button rightButton;                    // Button to go to next sprite
-    public Button confirmButton;                  // Button to confirm selection
+    public GameObject profileOverlay;
+    public TMP_InputField nameInput;
+    public Image characterImage;
+    public Button leftButton;
+    public Button rightButton;
+    public Button confirmButton;
 
-    [Header("Profile Display (Top-Left UI)")]
-    public GameObject profileDisplayPanel;        // The small profile panel always visible during game
-    public Image profileImage;                    // Top-left profile image
-    public TextMeshProUGUI profileNameText;       // Top-left profile name text
+    [Header("Top-left profile")]
+    public Image profileImage;
+    public TMP_Text profileName;
+
+    [Header("Character options")]
+    public Sprite[] characterSprites;
+    public GameObject[] characterPrefabs;
 
     [Header("Player")]
-    public GameObject playerObject;               // The player object (with SpriteRenderer)
+    public GameObject playerCube;
 
-    [Header("Character Sprites")]
-    public Sprite[] characterSprites;             // Drag your desired normal pose sprites here manually
-
-    private int currentSpriteIndex = 0;
+    private int currentCharacterIndex = 0;
 
     void Start()
     {
-        // Make sure overlay is open at start
-        profileMakerPanel.SetActive(true);
-        profileDisplayPanel.SetActive(false); // Hide profile display until confirmed
-        Time.timeScale = 0;                   // Pause game while choosing profile
-
-        // Show first sprite
-        UpdateCharacterPreview();
-
-        // Hook up buttons
-        leftButton.onClick.AddListener(ShowPreviousCharacter);
-        rightButton.onClick.AddListener(ShowNextCharacter);
+        profileOverlay.SetActive(true);
+        UpdateCharacterImage();
+        leftButton.onClick.AddListener(PreviousCharacter);
+        rightButton.onClick.AddListener(NextCharacter);
         confirmButton.onClick.AddListener(ConfirmProfile);
     }
 
-    void UpdateCharacterPreview()
+    void UpdateCharacterImage()
     {
-        if (characterSprites.Length > 0)
-        {
-            characterPreviewImage.sprite = characterSprites[currentSpriteIndex];
-        }
+        characterImage.sprite = characterSprites[currentCharacterIndex];
     }
 
-    void ShowPreviousCharacter()
+    void PreviousCharacter()
     {
-        if (characterSprites.Length == 0) return;
-        currentSpriteIndex = (currentSpriteIndex - 1 + characterSprites.Length) % characterSprites.Length;
-        UpdateCharacterPreview();
+        currentCharacterIndex = (currentCharacterIndex - 1 + characterSprites.Length) % characterSprites.Length;
+        UpdateCharacterImage();
     }
 
-    void ShowNextCharacter()
+    void NextCharacter()
     {
-        if (characterSprites.Length == 0) return;
-        currentSpriteIndex = (currentSpriteIndex + 1) % characterSprites.Length;
-        UpdateCharacterPreview();
+        currentCharacterIndex = (currentCharacterIndex + 1) % characterSprites.Length;
+        UpdateCharacterImage();
     }
 
     void ConfirmProfile()
     {
-        string playerName = nameInput.text.Trim();
+        string playerName = nameInput.text;
 
-        if (string.IsNullOrEmpty(playerName))
-        {
-            Debug.LogWarning("Player name is empty!");
-            return;
-        }
+        // Update top-left profile UI
+        profileName.text = playerName;
+        profileImage.sprite = characterSprites[currentCharacterIndex];
 
-        if (characterSprites.Length == 0)
-        {
-            Debug.LogWarning("No character sprites assigned!");
-            return;
-        }
+        // Replace player cube with chosen character prefab
+        Vector3 spawnPos = playerCube.transform.position;
+        Quaternion spawnRot = playerCube.transform.rotation;
+        Destroy(playerCube);
+        Instantiate(characterPrefabs[currentCharacterIndex], spawnPos, spawnRot);
 
-        // Update profile display UI
-        profileImage.sprite = characterSprites[currentSpriteIndex];
-        profileNameText.text = playerName;
+        // Hide overlay
+        profileOverlay.SetActive(false);
 
-        // Update player sprite
-        SpriteRenderer playerRenderer = playerObject.GetComponent<SpriteRenderer>();
-        if (playerRenderer != null)
-        {
-            playerRenderer.sprite = characterSprites[currentSpriteIndex];
-        }
-
-        // Show profile display
-        profileDisplayPanel.SetActive(true);
-
-        // Close overlay and resume game
-        profileMakerPanel.SetActive(false);
-        Time.timeScale = 1;
+        // Optional: resume game if paused, or reset timescale
+        // Time.timeScale = 1;
     }
 }
