@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 776853496}
   - component: {fileID: 776853495}
   - component: {fileID: 776853494}
+  - component: {fileID: 776853498}
   m_Layer: 5
   m_Name: bgmbotton
   m_TagString: Untagged
@@ -382,6 +383,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 776853498}
+        m_TargetAssemblyTypeName: SoundToggle, Assembly-CSharp
+        m_MethodName: ToggleSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &776853496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,6 +433,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776853492}
   m_CullTransparentMesh: 1
+--- !u!114 &776853498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776853492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a53b8d9cdcf02814eab16c4a9a0b915a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSources:
+  - {fileID: 0}
 --- !u!1 &786945159
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,8 +551,8 @@ GameObject:
   - component: {fileID: 807912490}
   - component: {fileID: 807912489}
   - component: {fileID: 807912488}
-  - component: {fileID: 807912487}
   - component: {fileID: 807912486}
+  - component: {fileID: 807912491}
   m_Layer: 5
   m_Name: homebotton
   m_TagString: Untagged
@@ -564,21 +591,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fac610ce6a435754092658f4c05884c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSprite: {fileID: -1366584575, guid: 3db9761599755414ea78440cd753f5b6, type: 3}
-  clickedSprite: {fileID: -1042114835, guid: 3db9761599755414ea78440cd753f5b6, type: 3}
---- !u!114 &807912487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 807912484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1c2d33648beaf442aa05c039bd9f0f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneIndex: 0
+  defaultSprite: {fileID: 293476240, guid: 3db9761599755414ea78440cd753f5b6, type: 3}
+  clickedSprite: {fileID: 1963364842, guid: 3db9761599755414ea78440cd753f5b6, type: 3}
 --- !u!114 &807912488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,9 +637,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 807912487}
-        m_TargetAssemblyTypeName: LoadSceneButton, Assembly-CSharp
-        m_MethodName: OnButtonClick
+      - m_Target: {fileID: 807912486}
+        m_TargetAssemblyTypeName: ChangeButtonImage, Assembly-CSharp
+        m_MethodName: OnClickChangeImage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -635,13 +649,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 807912486}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChangeButtonImage, Assembly-CSharp
-        m_MethodName: OnClickChangeImage
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -667,7 +681,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1366584575, guid: 3db9761599755414ea78440cd753f5b6, type: 3}
+  m_Sprite: {fileID: 293476240, guid: 3db9761599755414ea78440cd753f5b6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -685,6 +699,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807912484}
   m_CullTransparentMesh: 1
+--- !u!114 &807912491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807912484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9914adaaaa80a5447b09cca1d87da08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overlayPanel: {fileID: 0}
+  pauseGame: 0
 --- !u!1 &992536038
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,7 +889,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53b8d9cdcf02814eab16c4a9a0b915a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioToToggle: {fileID: 0}
+  audioSources:
+  - {fileID: 0}
 --- !u!1 &999002356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,7 +1249,7 @@ GameObject:
   - component: {fileID: 1213103498}
   - component: {fileID: 1213103497}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1669,7 +1698,7 @@ GameObject:
   - component: {fileID: 1986458606}
   - component: {fileID: 1986458605}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: credits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1691,7 +1720,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18.999985, y: -218}
+  m_AnchoredPosition: {x: 7, y: -218}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1986458605
@@ -1714,7 +1743,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Credit
+  m_text: Credits
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe45e363dcd6eae41ade5fb5db25dda3, type: 2}
   m_sharedMaterial: {fileID: -2627168591228351999, guid: fe45e363dcd6eae41ade5fb5db25dda3, type: 2}
@@ -2054,7 +2083,7 @@ GameObject:
   - component: {fileID: 2146236389}
   - component: {fileID: 2146236388}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

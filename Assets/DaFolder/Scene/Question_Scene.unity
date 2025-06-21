@@ -368,8 +368,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 289366094}
-        m_TargetAssemblyTypeName: LoadSceneButton, Assembly-CSharp
-        m_MethodName: OnButtonClick
+        m_TargetAssemblyTypeName: QuitGameButton, Assembly-CSharp
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -426,10 +426,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 289366088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1c2d33648beaf442aa05c039bd9f0f1, type: 3}
+  m_Script: {fileID: 11500000, guid: d57c58ab399bb1840ba1be3311cb7105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneIndex: 0
 --- !u!1 &452530990
 GameObject:
   m_ObjectHideFlags: 0

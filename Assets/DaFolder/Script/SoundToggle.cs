@@ -3,15 +3,21 @@ using UnityEngine.UI;
 
 public class SoundToggle : MonoBehaviour
 {
-    public AudioSource audioToToggle;
+    public AudioSource[] audioSources;
 
+    // Track if sound is muted
     private bool isMuted = false;
 
     public void ToggleSound()
     {
-        if (audioToToggle == null) return;
-
         isMuted = !isMuted;
-        audioToToggle.mute = isMuted;
+
+        foreach (AudioSource source in audioSources)
+        {
+            if (source != null)
+            {
+                source.mute = isMuted;
+            }
+        }
     }
 }
