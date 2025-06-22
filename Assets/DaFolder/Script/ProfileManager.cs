@@ -71,16 +71,24 @@ public class ProfileManager : MonoBehaviour
         profileName.text = playerName;
         profileImage.sprite = characterSprites[currentCharacterIndex];
 
-        // Replace player cube with chosen character prefab
+        // Spawn the chosen player prefab at cube position
         Vector3 spawnPos = playerCube.transform.position;
         Quaternion spawnRot = playerCube.transform.rotation;
-        Destroy(playerCube);
-        Instantiate(characterPrefabs[currentCharacterIndex], spawnPos, spawnRot);
+        GameObject newPlayer = Instantiate(characterPrefabs[currentCharacterIndex], spawnPos, spawnRot);
+
+        // Parent it to where the cube was (so health bar stays on top or correct hierarchy)
+        newPlayer.transform.parent = playerCube.transform.parent;
+
+        // Option 1: Deactivate cube (keep health bar, etc.)
+        playerCube.SetActive(false);
+
+        // OR Option 2: Remove only cube visual (if cube has mesh or sprite to hide)
+        // For example:
+        // playerCube.GetComponent<MeshRenderer>().enabled = false;
+        // or playerCube.GetComponent<SpriteRenderer>().enabled = false;
 
         // Hide overlay + show profile
         ShowProfileMaker(false);
-
-        // Optional: resume game if paused
-        // Time.timeScale = 1;
     }
+
 }
