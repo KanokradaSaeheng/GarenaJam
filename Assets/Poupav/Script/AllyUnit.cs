@@ -9,6 +9,8 @@ public class AllyUnit : MonoBehaviour
     public float detectionRadius = 5f;
     public float health = 3f;
 
+    public GameObject sparkEffectPrefab; // 🔥 Drag your spark prefab here
+
     private Transform currentEnemyTarget;
     private Rigidbody rb;
     private Animator animator;
@@ -54,7 +56,7 @@ public class AllyUnit : MonoBehaviour
         }
         else
         {
-            animator.SetFloat("Speed", 0f); // not moving
+            animator.SetFloat("Speed", 0f); // idle
         }
     }
 
@@ -69,11 +71,11 @@ public class AllyUnit : MonoBehaviour
             rb.MovePosition(transform.position + moveDir * moveSpeed * Time.deltaTime);
             transform.forward = moveDir;
 
-            animator.SetFloat("Speed", moveSpeed); // play walk animation
+            animator.SetFloat("Speed", moveSpeed); // walking
         }
         else
         {
-            animator.SetFloat("Speed", 0f); // play idle
+            animator.SetFloat("Speed", 0f); // idle
         }
     }
 
@@ -81,6 +83,13 @@ public class AllyUnit : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            // 💥 Spawn spark effect at contact point
+            if (sparkEffectPrefab != null && collision.contacts.Length > 0)
+            {
+                ContactPoint contact = collision.contacts[0];
+                Instantiate(sparkEffectPrefab, contact.point, Quaternion.identity);
+            }
+
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             if (enemy != null)
             {
