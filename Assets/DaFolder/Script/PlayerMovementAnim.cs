@@ -12,7 +12,8 @@ public class PlayerMovementAnim : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponentInChildren<Animator>(); // Animator should be on the sprite
+        animator = GetComponent<Animator>();
+        // Animator should be on the sprite
     }
 
     private void FixedUpdate()
