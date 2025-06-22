@@ -1,33 +1,28 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour
 {
-    public Transform cam; // Assign Main Camera here
-    public Slider healthSlider; // Drag your UI slider here
+    public Transform cam;
+    public Slider healthSlider;
     public float maxHealth = 100f;
     private float currentHealth;
+
+    public GameObject deathOverlay; // Drag the DeathOverlay UI object here
 
     void Start()
     {
         currentHealth = maxHealth;
         UpdateHealthUI();
+
+        if (deathOverlay != null)
+            deathOverlay.SetActive(false); // Hide at start
     }
 
     void LateUpdate()
     {
-        // Make the health bar face the camera
         if (cam != null)
             transform.LookAt(transform.position + cam.forward);
-    }
-
-    void Update()
-    {
-        // TEST: Tap screen to reduce HP
-        if (Input.GetMouseButtonDown(0))
-        {
-            TakeDamage(10f);
-        }
     }
 
     public void TakeDamage(float damage)
@@ -35,6 +30,18 @@ public class Healthbar : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthUI();
+
+        if (currentHealth <= 0)
+        {
+            ShowDeathOverlay();
+        }
+    }
+
+    void ShowDeathOverlay()
+    {
+        Debug.Log("Player Died 💀");
+        if (deathOverlay != null)
+            deathOverlay.SetActive(true);
     }
 
     void UpdateHealthUI()
