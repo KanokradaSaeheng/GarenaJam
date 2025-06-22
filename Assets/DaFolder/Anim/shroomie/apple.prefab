@@ -189,3 +189,4 @@ MonoBehaviour:
   player: {fileID: 5881414088110497019, guid: 80746c392a6e23b4d8443e60432e6170, type: 3}
   moveSpeed: 3
   chaseRange: 10
+  sparkEffectPrefab: {fileID: 3077343761403282166, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}

@@ -169,6 +169,7 @@ MonoBehaviour:
   moveSpeed: 5
   detectionRadius: 5
   health: 3
+  sparkEffectPrefab: {fileID: 3077343761403282166, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
 --- !u!95 &6719103702625133161
 Animator:
   serializedVersion: 7
